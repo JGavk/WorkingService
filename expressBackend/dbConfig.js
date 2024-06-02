@@ -2,7 +2,7 @@ const config = {
     user: "postgres",
     database: "WorkingServideBD",
     password: "admin123",
-    host: "localhost",  // Asegúrate de que el host es correcto
+    host: "localhost",  
     port: 5432,
     max: 10,
     idleTimeoutMillis: 30000,

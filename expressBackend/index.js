@@ -6,7 +6,7 @@ const pool = new Pool(dbConfig);
 
 const app = express();
 const port = 3000;
-
+//Añadir rutas para los diferentes funcionamientos -Juan
 app.get('/', async (req, res) => {
     try {
         const client = await pool.connect();
@@ -22,3 +22,4 @@ app.get('/', async (req, res) => {
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });
+

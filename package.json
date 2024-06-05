@@ -1,13 +1,13 @@
 {
   "name": "workingservicesqlnode",
   "version": "1.0.0",
-  "main": "expressBackend/application.js",
+  "main": "expressBackend/index.js",
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "nodemon": "^2.0.15"  
   },
   "scripts": {
-    "start": "nodemon --inspect=5858 expressBackend/application.js"
+    "start": "nodemon --inspect=5858 expressBackend/index.js"
   }
 }

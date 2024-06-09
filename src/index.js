@@ -1,6 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
-const dbConfig = require('./dbConfig');
+const dbConfig = require('./expressBackend/dbConfig');
 
 const pool = new Pool(dbConfig);
 
@@ -18,6 +18,7 @@ app.get('/', async (req, res) => {
         res.send("Error " + err);
     }
 });
+
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

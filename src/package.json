@@ -1,13 +1,14 @@
 {
   "name": "workingservicesqlnode",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "nodemon": "^2.0.15"  
   },
   "scripts": {
-    "start": "nodemon --inspect=5858 src/index.js"
+    "start": "nodemon src/index.js"
   }
+  
 }

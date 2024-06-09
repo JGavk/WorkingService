@@ -1,9 +1,9 @@
 const config = {
-    user: "postgres",
-    database: "WorkingServideBD",
-    password: "admin123",
-    host: "localhost",  
-    port: 5432,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     max: 10,
     idleTimeoutMillis: 30000,
 };

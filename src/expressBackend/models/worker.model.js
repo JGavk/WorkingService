@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Worker = sequelize.define('Worker', {
+    const Worker = sequelize.define('worker', {
         firstName : DataTypes.STRING,
         lastName : DataTypes.STRING,
         address : DataTypes.STRING,
@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     },{ freezeTableName: true });
 
     Worker.associate = (models) => {
-        Worker.belongsToMany(models.labour);
+        Worker.hasMany(models.labour);
     };
+
     return Worker;
   };

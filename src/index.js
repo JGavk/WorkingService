@@ -1,16 +1,19 @@
 const express = require('express');
 const { Pool } = require('pg');
-const dbConfig = require('./expressBackend/dbConfig');
-
-const pool = new Pool(dbConfig);
-
+const path = require('path'); 
+const bodyParser = require('body-parser')
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para parsear JSON del cuerpo de las solicitudes
 app.use(express.json());
 
-// Ruta de ejemplo para manejar la solicitud GET a '/'
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static(path.join(__dirname, 'expressBackend/public')));
+
+
+
+app.use(bodyParser.urlencoded({extended : false}));
+
 app.get('/', async (req, res) => {
     try {
         const client = await pool.connect();

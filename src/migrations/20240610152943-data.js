@@ -7,39 +7,39 @@
 const workerTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('worker',{
     id: {
-      allowNull : false,
-      autoIncrement : true,
-      primaryKey : true,
-      type : Sequelize.INTEGER
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
     },
-    name : {
-      type : Sequelize.STRING,
-      allowNull : false
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    lastName : {
-      type : Sequelize.STRING,
-      allowNull : false
+    lastName: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    address : {
-      type : Sequelize.STRING,
-      allowNull : false
+    address: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
     docuPic:{
-      allowNull : true,
-      type : Sequelize.STRING 
+      allowNull: true,
+      type: Sequelize.STRING 
     },
     perfPicture: {
-      allowNull : true,
+      allowNull: true,
       type : Sequelize.STRING
     },
-    status : {
-      type : Sequelize.ENUM('Active', 'Occupied'),
-      allowNull : false,
-      defaultValue : 'Active'
+    status: {
+      type: Sequelize.ENUM('Active', 'Occupied'),
+      allowNull: false,
+      defaultValue: 'Active'
     },
-    rating : {
-      type : Sequelize.INTEGER,
-      allowNull : true,
+    rating: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
     },
     created_at: {
       allowNull: false,
@@ -54,37 +54,37 @@ const workerTable = (queryInterface, Sequelize) => (
 
 const userTable = (queryInterface, Sequelize) =>(
   queryInterface.createTable('user', {
-    id : {
-      allowNull : false,
-      autoIncrement : true,
-      primaryKey : true,
-      type : Sequelize.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
     },
-    name : {
-      type : Sequelize.STRING,
-      allowNull : false
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    lastName : {
+    lastName: {
       type : Sequelize.STRING,
-      allowNull : false
+      allowNull: false
     },
-    address : {
-      type : Sequelize.STRING,
-      allowNull : false
+    address: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
     cellNumer: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    publicReceipt: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    email: {
       type : Sequelize.STRING,
       allowNull : false
     },
-    publicReceipt : {
-      type : Sequelize.STRING,
-      allowNull : false
-    },
-    email : {
-      type : Sequelize.STRING,
-      allowNull : false
-    },
-    paymentMethod : {
+    paymentMethod: {
       type : Sequelize.STRING,
       allowNull : false
     },
@@ -101,14 +101,14 @@ const userTable = (queryInterface, Sequelize) =>(
 
 const paymentTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('payment', {
-    id : {
-      allowNull : false,
-      autoIncrement : true,
-      primaryKey : true,
-      type : Sequelize.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
     },
-    qualification : {
-      type : Sequelize.INTEGER,
+    qualification: {
+      type: Sequelize.INTEGER,
       allowNull : true
     },
     user_id: {
@@ -134,18 +134,18 @@ const paymentTable = (queryInterface, Sequelize) => (
 
 const labourTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('labour', {
-    id : {
-      allowNull : false,
-      autoIncrement : true,
-      primaryKey : true,
-      type : Sequelize.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
     },
-    labourName : {
-      type : Sequelize.STRING,
-      allowNull : false
+    labourName: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    price : {
-      type : Sequelize.FLOAT,
+    price: {
+      type: Sequelize.FLOAT,
       allowNull: false
     },
     worker_id: {
@@ -181,19 +181,19 @@ const labourTable = (queryInterface, Sequelize) => (
 
 const billTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('bill', {
-    id : {
-      allowNull : false,
-      autoIncrement : true,
-      primaryKey : true,
-      type : Sequelize.INTEGER
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
     },
-    date : {
-      type : Sequelize.DATE,
-      allowNull : false
+    date: {
+      type: Sequelize.DATE,
+      allowNull: false
     },
-    amount : {
-      type : Sequelize.FLOAT,
-      allowNull : false
+    amount: {
+      type: Sequelize.FLOAT,
+      allowNull: false
     },
     payment_id: {
       type: Sequelize.INTEGER,

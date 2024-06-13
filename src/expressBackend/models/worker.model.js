@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     },{ freezeTableName: true });
 
     Worker.associate = (models) => {
-        Worker.hasMany(models.labour);
+        Worker.hasMany(models.Labour);
     };
 
     return Worker;

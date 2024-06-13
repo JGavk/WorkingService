@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         firstName : DataTypes.STRING,
         lastName : DataTypes.STRING,
         address : DataTypes.STRING,
-        publicRecepit : DataTypes.BLOB,
+        publicReceipt : DataTypes.STRING,
         email : DataTypes.STRING,
         cellNumber : DataTypes.STRING,
         paymentMethod : DataTypes.STRING

@@ -1,17 +1,14 @@
-const UserPersistence = require('../persistences/user.persistence');
-const { User } = require('../models/user.model');
 
-const userPersistence = new UserPersistence({ User });
-
-const UserService = {
-    createUser: async (data) => {
-        try {
-            const user = await userPersistence.create(data);
-            return user;
-        } catch (err) {
-            throw new Error('Error creating user: ' + err.message);
-        }
+class UserService {
+    constructor(UserPersistence) {
+        this._UserPersistence = UserPersistence;
     }
-};
 
-module.exports = UserService;
+    async createUser(payload) {
+        console.log("PAYLOAD  ", payload)
+        const newUser = this._UserPersistence.create(payload);
+        return newUser;
+    }
+}
+
+module.exports = UserService; 

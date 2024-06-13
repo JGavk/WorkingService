@@ -5,12 +5,13 @@ module.exports = (sequelize, DataTypes) => {
         address : DataTypes.STRING,
         publicReceipt : DataTypes.STRING,
         email : DataTypes.STRING,
+        password: DataTypes.STRING,
         cellNumber : DataTypes.STRING,
         paymentMethod : DataTypes.STRING
     },{ freezeTableName: true });
 
     User.associate = (models) => {
-        User.hasOne(models.Payment);
+        User.hasMany(models.Payment);
     };
     
     return User

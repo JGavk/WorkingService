@@ -14,17 +14,9 @@ app.use(express.static(path.join(__dirname, 'expressBackend/public')));
 
 app.use(bodyParser.urlencoded({extended : false}));
 
-app.get('/', async (req, res) => {
-    try {
-        const client = await pool.connect();
-        const result = await client.query('SELECT NOW()');
-        client.release();
-        res.send(`Hello World! Database time is: ${result.rows[0].now}`);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error fetching time from database, please reload");
-    }
-});
+app.use('/api', [
+    require('./expressBackend/route/authRoutes')
+]);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

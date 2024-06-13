@@ -1,4 +1,5 @@
 const config = {
+    DB: process.env.DB,
     USER: process.env.DB_USER,
     DATABASE: process.env.DB_NAME,
     PASSWORD: process.env.DB_PASSWORD,

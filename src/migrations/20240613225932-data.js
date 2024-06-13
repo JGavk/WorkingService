@@ -1,5 +1,7 @@
 'use strict';
 
+const { allow } = require('joi');
+
 /** @type {import('sequelize-cli').Migration} */
 /* Juan- Definimos la creacion de tablas PostgreSQL mediante un protocolo 
    Sequalize de Node.Js  */
@@ -60,11 +62,11 @@ const userTable = (queryInterface, Sequelize) =>(
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    name: {
+    first_name: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    lastName: {
+    last_name: {
       type : Sequelize.STRING,
       allowNull: false
     },
@@ -72,11 +74,11 @@ const userTable = (queryInterface, Sequelize) =>(
       type: Sequelize.STRING,
       allowNull: false
     },
-    cellNumer: {
+    cell_number: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    publicReceipt: {
+    public_receipt: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -84,7 +86,11 @@ const userTable = (queryInterface, Sequelize) =>(
       type : Sequelize.STRING,
       allowNull : false
     },
-    paymentMethod: {
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    payment_method: {
       type : Sequelize.STRING,
       allowNull : false
     },

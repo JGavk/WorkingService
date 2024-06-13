@@ -36,18 +36,18 @@ const sequelize = new Sequelize(
 );
 
 const models = {};
-models.Worker = require('./worker.model.js')(sequelize, Sequelize);
-models.Labour = require('./labour.model.js')(sequelize, Sequelize);
-models.Payment = require('./payment.model.js')(sequelize, Sequelize);
-models.User = require('./user.model.js')(sequelize, Sequelize);
-models.Bill = require('./bill.model.js')(sequelize, Sequelize);
+models.Worker = require('./worker.model')(sequelize, Sequelize);
+models.Labour = require('./labour.model')(sequelize, Sequelize);
+models.Payment = require('./payment.model')(sequelize, Sequelize);
+models.User = require('./user.model')(sequelize, Sequelize);
+models.Bill = require('./bill.model')(sequelize, Sequelize);
 
 
 Object.keys(models).forEach((modelName) => {
-    if ('associate' in models[modelName]) {
-      models[modelName].associate(models);
-    }
-  });
+  if ('associate' in models[modelName]) {
+    models[modelName].associate(models);
+  }
+});
   
-  module.exports = models;
+module.exports = models;
   

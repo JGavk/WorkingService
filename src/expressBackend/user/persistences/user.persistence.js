@@ -1,15 +1,17 @@
 class UserPersistence{
 
     constructor({User, Payment}){
-        this.User = User;
-        
+        this._User = User;
     }
 
     create(data){
-        return this.User.create(data);
+      const { sequelize } = this._User;
+      console.log("SEQUELIZE   ", sequelize)
+      return this._User.create(data);
     }
+    
     findOne(cond, config) {
-        return this.User.findOne({
+        return this._User.findOne({
           raw: true,
           nest: true,
           ...cond,

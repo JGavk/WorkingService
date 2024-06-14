@@ -1,7 +1,6 @@
 class LabourPersistence {
-    constructor({Labour, Worker}){
+    constructor({Labour}){
         this._Labour = Labour;
-        this._Worker = Worker;
     }
 
     create(data){
@@ -15,6 +14,11 @@ class LabourPersistence {
             ...config,
         });
     }
-
-
+    findById(labourId) {
+        return this._Labour.findOne({
+            where: { labourId },
+            raw: true,
+            nest: true
+        });
+      }
 }

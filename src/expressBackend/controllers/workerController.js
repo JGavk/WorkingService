@@ -17,7 +17,7 @@ exports.signUp = async(req, res) => {
         const response = await API.WorkerService.createWorker(validated.value);
         console.log(response)
         res.status(StatusCodes.OK).json({ data: response }); 
-    }catch(error) {
+    }catch(error){
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message }); 
     }
 };

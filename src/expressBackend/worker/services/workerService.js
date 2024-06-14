@@ -5,9 +5,14 @@ class WorkerService {
     }
     async createWorker(payload) {
         console.log("PAYLOAD  ", payload)
-        const newWorker = this._WorkerPersistence.create(payload);
-        return newWorker;
+        const newWorker = await this._WorkerPersistence.create(payload);
+        const asoWorker = await this._WorkerPersistence.createWorkerAssociation({
+            workerId : newWorker.id,
+            labourId: payload.labourId
+        })
+        return {...newWorker, labour: asoWorker};
     }
+    
 
     findById(rowID){
         return this._WorkerPersistence.findOne({

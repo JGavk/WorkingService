@@ -1,15 +1,17 @@
 class WorkerPersistence{
 
-    constructor({Worker, Labour}){
+    constructor({Worker, Labour, WorkerByLabour}){
         this._Worker = Worker;
-        this._Labour = Labour
+        this._Labour = Labour;
+        this._WorkerByLabour = WorkerByLabour
     }
 
     create(data){
-      const { sequelize } = this._Worker;
       return this._Worker.create(data);
     }
-
+    createWorkerAssociation(data){
+      return this._WorkerByLabour.create(data);
+    }
     findOne(cond, config) {
         return this._Worker.findOne({
           raw: true,
@@ -33,7 +35,7 @@ class WorkerPersistence{
           nest: true
       });
     }
-    
+
     findAll(config) {
       return this._Worker.findAll({
           raw: true,

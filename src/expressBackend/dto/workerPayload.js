@@ -7,7 +7,8 @@ const signupPayload = Joi.object().keys({
     username: Joi.string().required(),
     password : Joi.string().required(),
     docuPic : Joi.string().required(),
-    perfPic : Joi.string().required()
+    perfPic : Joi.string().required(),
+    labourId: Joi.number().integer().required()  /* esto se agrego nuevo */
 });
 
 

@@ -27,6 +27,10 @@ const workerTable = (queryInterface, Sequelize) => (
       type: Sequelize.STRING,
       allowNull: false
     },
+    username:{
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     password: {
       type: Sequelize.STRING,
       allowNull: false

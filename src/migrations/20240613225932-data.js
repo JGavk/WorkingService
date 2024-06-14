@@ -1,6 +1,7 @@
 'use strict';
 
 const { allow } = require('joi');
+const { Sequelize } = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 /* Juan- Definimos la creacion de tablas PostgreSQL mediante un protocolo 
@@ -14,11 +15,11 @@ const workerTable = (queryInterface, Sequelize) => (
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    name: {
+    first_name: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    lastName: {
+    last_name: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -26,11 +27,15 @@ const workerTable = (queryInterface, Sequelize) => (
       type: Sequelize.STRING,
       allowNull: false
     },
-    docuPic:{
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    docu_pic:{
       allowNull: true,
       type: Sequelize.STRING 
     },
-    perfPicture: {
+    perf_pic: {
       allowNull: true,
       type : Sequelize.STRING
     },
@@ -38,10 +43,6 @@ const workerTable = (queryInterface, Sequelize) => (
       type: Sequelize.ENUM('Active', 'Occupied'),
       allowNull: false,
       defaultValue: 'Active'
-    },
-    rating: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
     },
     created_at: {
       allowNull: false,
@@ -90,10 +91,6 @@ const userTable = (queryInterface, Sequelize) =>(
       type: Sequelize.STRING,
       allowNull: false
     },
-    payment_method: {
-      type : Sequelize.STRING,
-      allowNull : false
-    },
     created_at: {
       allowNull: false,
       type: Sequelize.DATE
@@ -113,9 +110,9 @@ const paymentTable = (queryInterface, Sequelize) => (
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    qualification: {
-      type: Sequelize.INTEGER,
-      allowNull : true
+    payment_method: {
+      type: Sequelize.STRING,
+      allowNull : false
     },
     user_id: {
       type: Sequelize.INTEGER,
@@ -138,6 +135,25 @@ const paymentTable = (queryInterface, Sequelize) => (
   })
 );
 
+const qualificationTable = (queryInterface, Sequelize) => (
+  queryInterface.createTable('qualification', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    rate: {
+      allowNull: true,
+      type: Sequelize.STRING
+    },
+    description: {
+      allowNull: true,
+      type: Sequelize.STRING
+    }
+  })
+);
+
 const labourTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('labour', {
     id: {
@@ -146,23 +162,13 @@ const labourTable = (queryInterface, Sequelize) => (
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    labourName: {
+    labour_name: {
       type: Sequelize.STRING,
       allowNull: false
     },
     price: {
       type: Sequelize.FLOAT,
       allowNull: false
-    },
-    worker_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      onUpdate: 'cascade',
-      onDelete: 'cascade',
-      references: {
-        model: 'worker',
-        key: 'id'
-      }
     },
     payment_id: {
       type: Sequelize.INTEGER,
@@ -181,6 +187,37 @@ const labourTable = (queryInterface, Sequelize) => (
     updated_at: {
       allowNull: false,
       type: Sequelize.DATE
+    }
+  })
+);
+
+const ruptureTable = (queryInterface, Sequelize) => (
+  queryInterface.createTable('worker_by_labour', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    worker_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      references: {
+        model: 'worker',
+        key: 'id'
+      }
+    },
+    labour_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      references: {
+        model: 'labour',
+        key: 'id'
+      }
     }
   })
 );
@@ -232,6 +269,8 @@ module.exports = {
       .then(() => paymentTable(queryInterface, Sequelize))
       .then(() => labourTable(queryInterface, Sequelize))
       .then(() => billTable(queryInterface, Sequelize))
+      .then(() => qualificationTable(queryInterface, Sequelize))
+      .then(() => ruptureTable(queryInterface, Sequelize))
   ),
   down: queryInterface => (
     Promise.resolve()
@@ -240,5 +279,7 @@ module.exports = {
       .then(() => queryInterface.dropTable('payment'))
       .then(() => queryInterface.dropTable('labour'))
       .then(() => queryInterface.dropTable('bill'))
+      .then(() => queryInterface.dropTable('qualification'))
+      .then(() => queryInterface.dropTable('worker_by_labour'))
   )
 };

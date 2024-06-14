@@ -3,15 +3,14 @@ module.exports = (sequelize, DataTypes) => {
         firstName : DataTypes.STRING,
         lastName : DataTypes.STRING,
         address : DataTypes.STRING,
-        docuPic : DataTypes.BLOB,
-        perfPic : DataTypes.BLOB,
-        status : DataTypes.ENUM('Active','Occupied'),
-        rating : DataTypes.INTEGER
+        password: DataTypes.STRING,
+        docuPic : DataTypes.STRING,
+        perfPic : DataTypes.STRING,
+        status : DataTypes.ENUM('Active','Occupied')
     },{ freezeTableName: true });
 
     Worker.associate = (models) => {
-        Worker.hasMany(models.Labour);
+        Worker.hasMany(models.WorkerByLabour, { as: 'labours'});
     };
-
-    return Worker;
+    return Worker
   };

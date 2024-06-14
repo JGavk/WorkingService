@@ -6,13 +6,12 @@ module.exports = (sequelize, DataTypes) => {
         publicReceipt : DataTypes.STRING,
         email : DataTypes.STRING,
         password: DataTypes.STRING,
-        cellNumber : DataTypes.STRING,
-        paymentMethod : DataTypes.STRING
+        cellNumber : DataTypes.STRING
     },{ freezeTableName: true });
 
     User.associate = (models) => {
         User.hasMany(models.Payment);
+        User.hasMany(models.Qualification);
     };
-    
     return User
 };

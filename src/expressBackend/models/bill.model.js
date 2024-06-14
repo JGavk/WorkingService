@@ -8,5 +8,5 @@ module.exports = (sequelize, DataTypes) => {
     Bill.associate = (models) => {
         Bill.belongsTo(models.Payment);
     };
-    return Bill;
+    return Bill
 };

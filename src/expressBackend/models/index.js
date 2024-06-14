@@ -41,6 +41,8 @@ models.Labour = require('./labour.model')(sequelize, Sequelize);
 models.Payment = require('./payment.model')(sequelize, Sequelize);
 models.User = require('./user.model')(sequelize, Sequelize);
 models.Bill = require('./bill.model')(sequelize, Sequelize);
+models.WorkerByLabour = require('./rupturew.model')(sequelize, Sequelize);
+models.Qualification = require('./qualification.model')(sequelize, Sequelize);
 
 
 Object.keys(models).forEach((modelName) => {

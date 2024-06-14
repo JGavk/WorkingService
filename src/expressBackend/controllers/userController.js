@@ -4,7 +4,7 @@ const {
 
 const { StatusCodes } = require ('http-status-codes');
 
-const {singupPayload, signinPayload} = require('../dto/userPayload');
+const {signupPayload, signinPayload} = require('../dto/userPayload');
 
 const API = dependencyContainer.api;
 

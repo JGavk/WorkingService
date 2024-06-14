@@ -17,10 +17,9 @@ exports.signUp = async(req, res) => {
         const response = await API.WorkerService.createWorker(validated.value);
         console.log(response)
         res.status(StatusCodes.OK).json({ data: response }); 
-    }catch{
+    }catch(error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message }); 
     }
-/* crear metodos controlados de get y conectar con labor mediante la tabla de rompimiento */
 };
 exports.signIn = async (req, res) => {
     try {
@@ -35,3 +34,5 @@ exports.signIn = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
 };
+
+/* crear metodos controlados de get y conectar con labor mediante la tabla de rompimiento */

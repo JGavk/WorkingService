@@ -12,7 +12,7 @@ const signupPayload = Joi.object().keys({
 
 
 const signinPayload = Joi.object().keys({
-    email: Joi.string().required(),
+    username: Joi.string().required(),
     password: Joi.string().required()
 });
 

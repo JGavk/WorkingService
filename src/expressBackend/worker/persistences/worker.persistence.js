@@ -9,6 +9,7 @@ class WorkerPersistence{
       const { sequelize } = this._Worker;
       return this._Worker.create(data);
     }
+
     findOne(cond, config) {
         return this._Worker.findOne({
           raw: true,
@@ -24,6 +25,15 @@ class WorkerPersistence{
           ]
         });
     }
+
+    findByUsername(username) {
+      return this._Worker.findOne({
+          where: { username },
+          raw: true,
+          nest: true
+      });
+    }
+    
     findAll(config) {
       return this._Worker.findAll({
           raw: true,

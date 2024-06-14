@@ -18,6 +18,6 @@ const signinPayload = Joi.object().keys({
 
 
 module.exports = {
-    singupPayload,
+    signupPayload,
     signinPayload
 }

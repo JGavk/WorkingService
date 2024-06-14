@@ -106,39 +106,6 @@ const userTable = (queryInterface, Sequelize) =>(
   })
 );
 
-const paymentTable = (queryInterface, Sequelize) => (
-  queryInterface.createTable('payment', {
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
-    payment_method: {
-      type: Sequelize.STRING,
-      allowNull : false
-    },
-    user_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      onUpdate: 'cascade',
-      onDelete: 'cascade',
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
-    created_at: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updated_at: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
-  })
-);
-
 const qualificationTable = (queryInterface, Sequelize) => (
   queryInterface.createTable('qualification', {
     id: {
@@ -174,13 +141,75 @@ const labourTable = (queryInterface, Sequelize) => (
       type: Sequelize.FLOAT,
       allowNull: false
     },
-    payment_id: {
-      type: Sequelize.INTEGER,
+    created_at: {
       allowNull: false,
+      type: Sequelize.DATE
+    },
+    updated_at: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
+  })
+);
+
+const paymentTypeTable = (queryInterface, Sequelize) =>(
+  queryInterface.createTable('payment_type',{
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    payment_method: {
+      allowNull:false,
+      type: Sequelize.STRING
+    },
+    created_at: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updated_at: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
+  })
+)
+
+const paymentTable = (queryInterface, Sequelize) => (
+  queryInterface.createTable('payment', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    payment_type_id:{
+      type: Sequelize.INTEGER,
+      allowNull: true,
       onUpdate: 'cascade',
       onDelete: 'cascade',
       references: {
-        model: 'payment',
+        model: 'payment_type',
+        key: 'id'
+      }
+    },
+    user_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    labour_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      references: {
+        model: 'labour',
         key: 'id'
       }
     },
@@ -270,8 +299,9 @@ module.exports = {
     Promise.resolve()
       .then(() => workerTable(queryInterface, Sequelize))
       .then(() => userTable(queryInterface, Sequelize))
-      .then(() => paymentTable(queryInterface, Sequelize))
       .then(() => labourTable(queryInterface, Sequelize))
+      .then(() => paymentTypeTable(queryInterface, Sequelize))
+      .then(() => paymentTable(queryInterface, Sequelize))
       .then(() => billTable(queryInterface, Sequelize))
       .then(() => qualificationTable(queryInterface, Sequelize))
       .then(() => ruptureTable(queryInterface, Sequelize))
@@ -280,8 +310,9 @@ module.exports = {
     Promise.resolve()
       .then(() => queryInterface.dropTable('user'))
       .then(() => queryInterface.dropTable('worker'))
-      .then(() => queryInterface.dropTable('payment'))
       .then(() => queryInterface.dropTable('labour'))
+      .then(() => queryInterface.dropTable('payment_table'))
+      .then(() => queryInterface.dropTable('payment'))
       .then(() => queryInterface.dropTable('bill'))
       .then(() => queryInterface.dropTable('qualification'))
       .then(() => queryInterface.dropTable('worker_by_labour'))

@@ -4,7 +4,6 @@ class WorkerService {
 
     constructor(WorkerPersistence){
         this.WorkerPersistence = WorkerPersistence;
-
     }
 
 
@@ -13,8 +12,12 @@ class WorkerService {
             where: {id: rowID, active: true}
         },{raw: true});
     }
-    returnAllWorkers(worker){
-        return this.WorkerPersistence.findAll;
+    async returnAllWorkers() {
+        try {
+            return await this.WorkerPersistence.findAll();
+        } catch (err) {
+            throw new Error('Error retrieving workers: ' + err.message);
+        }
     }
 };
 module.exports = WorkerService;

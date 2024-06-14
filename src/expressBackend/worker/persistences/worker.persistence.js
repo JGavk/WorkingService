@@ -24,19 +24,19 @@ class WorkerPersistence{
         });
     }
     findAll(config) {
-        return this.Worker.findOne({
+      return this.Worker.findAll({
           raw: true,
           nest: true,
           ...config,
           include: [
-            {
-              model: this.Labour,
-              required: false, /* false para que no filtre por la labor del trabajador y así poder crear la funcion que retorne a todos */
-              where: { active: true }
-            }
+              {
+                  model: this.Labour,
+                  required: false, // false para incluir trabajadores sin labores
+                  where: { active: true }
+              }
           ]
-        });
-    }
+      });
+  }
 }
 
 module.exports = WorkerPersistence;

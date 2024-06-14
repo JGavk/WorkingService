@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const singupPayload = Joi.object().keys({
+const signupPayload = Joi.object().keys({
     firstName: Joi.string().required(),
     lastName : Joi.string().required(),
     address : Joi.string().required(),

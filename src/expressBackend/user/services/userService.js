@@ -6,11 +6,11 @@ class UserService {
     async createUser(payload) {
         console.log("PAYLOAD  ", payload)
         const newUser = this._UserPersistence.create(payload);
-        const asoUser = await this._UserPersistence.createUserPayment({
+   /*     const asoUser = await this._UserPersistence.createUserPayment({
             userId : newUser.id,
             paymenttypeId: payload.paymenttypeId
-        })
-        return {...newUser, paymenttype: asoUser};
+        }) */
+        return newUser;
     }
     async signIn(payload){
         console.log("Payload", payload)

@@ -10,9 +10,11 @@ class UserPersistence{
       console.log("SEQUELIZE   ", sequelize)
       return this._User.create(data);
     }
+
     createUserPayment(data){
       return this._PaymentType.create(data);
     }
+    
     findByEmail(email) {
       return this._User.findOne({
           where: { email },

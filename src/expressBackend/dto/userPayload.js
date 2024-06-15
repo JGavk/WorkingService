@@ -8,6 +8,7 @@ const signupPayload = Joi.object().keys({
     email : Joi.string().required(),
     password : Joi.string().required(),
     cellNumber : Joi.string().required(),
+   /* paymenttypeId: Joi.number().integer().required() */
 });
 
 

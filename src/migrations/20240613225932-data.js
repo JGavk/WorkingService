@@ -185,7 +185,7 @@ const paymentTable = (queryInterface, Sequelize) => (
     },
     payment_type_id:{
       type: Sequelize.INTEGER,
-      allowNull: true,
+      allowNull:  false,
       onUpdate: 'cascade',
       onDelete: 'cascade',
       references: {
@@ -195,7 +195,7 @@ const paymentTable = (queryInterface, Sequelize) => (
     },
     user_id: {
       type: Sequelize.INTEGER,
-      allowNull: true,
+      allowNull: false,
       onUpdate: 'cascade',
       onDelete: 'cascade',
       references: {

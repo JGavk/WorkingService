@@ -15,7 +15,18 @@ export const postWorker = async (data) => {
         }
     }
 }
-
+export const getWorkers = async () =>{
+    try {
+        const response = await axios.get(`${VITE_API_URL}/workers`); 
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            throw new Error(error.response.data.message);
+        } else {
+            throw new Error('An unexpected error occurred');
+        }
+    }
+}
 export const getLabour = async () => {
     try {
         const response = await axios.get(`${VITE_API_URL}/labour`); 

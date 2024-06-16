@@ -51,7 +51,8 @@ class WorkerPersistence{
                   include: [ 
                     {
                       model: this._Labour,
-                      required: true
+                      required: true,
+                      as: 'labour'
                     }
                   ]
               }

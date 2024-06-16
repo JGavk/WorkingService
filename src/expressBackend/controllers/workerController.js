@@ -35,4 +35,11 @@ exports.signIn = async (req, res) => {
     }
 };
 
-/* crear metodos controlados de get y conectar con labor mediante la tabla de rompimiento */
+exports.getAllWorkers = async (req, res) => {
+    try {
+        const workers = await API.WorkerService.returnAllWorkers();
+        res.status(StatusCodes.OK).json({ data: workers });
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+};

@@ -12,8 +12,6 @@ class WorkerService {
         })
         return {...newWorker, labour: asoWorker};
     }
-    
-
     findById(rowID){
         return this._WorkerPersistence.findOne({
             where: {id: rowID, active: true}

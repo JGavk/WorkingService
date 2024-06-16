@@ -1,3 +1,5 @@
+const { required } = require("joi");
+
 class WorkerPersistence{
 
     constructor({Worker, Labour, WorkerByLabour}){
@@ -43,9 +45,15 @@ class WorkerPersistence{
           ...config,
           include: [
               {
-                  model: this._Labour,
-                  required: false,
-                  where: { active: true }
+                  model: this._WorkerByLabour,
+                  required: true,
+                  as: 'labours',
+                  include: [ 
+                    {
+                      model: this._Labour,
+                      required: true
+                    }
+                  ]
               }
           ]
       });

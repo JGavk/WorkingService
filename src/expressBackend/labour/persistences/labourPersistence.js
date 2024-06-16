@@ -1,6 +1,8 @@
 class LabourPersistence {
-    constructor({Labour}){
+
+    constructor({Labour, WorkerByLabour}){
         this._Labour = Labour;
+        this._WorkerByLabour= WorkerByLabour
     }
 
     create(data){
@@ -20,5 +22,7 @@ class LabourPersistence {
             raw: true,
             nest: true
         });
-      }
+    }
 }
+
+module.exports = LabourPersistence;

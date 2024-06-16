@@ -28,6 +28,9 @@ class UserService {
             throw new Error('Error signin'+ error.message);
         }
     }
+    async getAllUsers() {
+        return this._UserPersistence.getAll();
+    }
 }
 
 module.exports = UserService; 

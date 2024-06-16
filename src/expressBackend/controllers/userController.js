@@ -34,3 +34,12 @@ exports.signIn = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
 };
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await API.UserService.getAllUsers();
+        res.status(StatusCodes.OK).json({ data: users });
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+};

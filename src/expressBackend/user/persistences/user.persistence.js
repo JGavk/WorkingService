@@ -22,6 +22,12 @@ class UserPersistence{
           nest: true
       });
     }
+    getAll() {
+      return this._User.findAll({
+          raw: true,
+          nest: true
+      });
+  }
 
     findOne(cond, config) {
         return this._User.findOne({

@@ -22,3 +22,5 @@ class LabourService {
     }
    
 }
+
+module.exports = LabourService; 

@@ -15,4 +15,15 @@ export const postUsers = async (data) => {
         }
     }
 }
-
+export const getUsers = async () =>{
+    try {
+        const response = await axios.get(`${VITE_API_URL}/users`); 
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            throw new Error(error.response.data.message);
+        } else {
+            throw new Error('An unexpected error occurred');
+        }
+    }
+}

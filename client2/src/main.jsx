@@ -9,7 +9,7 @@ import {
 import Users from './pages/user/Users.jsx';
 import Worker from './pages/worker/Worker.jsx';
 import WorkerStorage from './pages/worker/WorkerStorage.jsx'
-
+import UserStorage from './pages/user/UserStorage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/worker-storage",
     element: <WorkerStorage></WorkerStorage>,
+  },
+  {
+    path: "/user-storage",
+    element: <UserStorage></UserStorage>,
   }
 ]);
 

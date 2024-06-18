@@ -9,10 +9,16 @@ COPY package*.json ./
 
 RUN npm install
 
-# Bundle app source
+# Copy env.bat file
+COPY env.bat /usr/src/app/env.bat
+
+# Execute env.bat file to set environment variables (Less Secure)
+RUN /usr/src/app/env.bat
+
+# Copy app source
 COPY . .
 
 EXPOSE 3000
 
-# Esta linea ejecuta en la terminal los comandos para iniciar todo
+# Start the application
 CMD [ "npm", "start" ]

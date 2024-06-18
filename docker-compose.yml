@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: postgres
+    image: postgres:latest
+    build: ./db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/bd.sql:/docker-entrypoint-initdb.d/bd.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+
